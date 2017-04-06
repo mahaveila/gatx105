@@ -49,38 +49,31 @@ public class TargetSumI494 implements Tracker{
      * subsetA = target/2 + total/2
      */
     public int findTargetSumWays2(int[] nums, int S) {
-        if(nums==null || nums.length<1){
-            return 0;
-        }
-        int total = Arrays.stream(nums).reduce(0, (sum, n) -> sum += n);
-        if((S+total)%2!=0){
-            return 0;
-        }
-        return dps(nums, (S+total)/2, 0);
-
+        log("entry S: " + S);
+        int total = Arrays.stream(nums).reduce(0,(sum, i)-> sum += i );
+        log("entry: "+total);
+        boolean invalid = total < S || (total+S)%2==1;
+        boolean invalid1 = total<S;
+        boolean invalid2 = (total+S)%2==1;
+        log("array invalid = " + invalid + " | " + invalid1 + " | " + invalid2);
+        return  invalid? 0 : dps(nums, (total+S)/2);
     }
 
-
-    private int dps(int[] nums, int S, int start){
-        //return condition: Y->sum=target N->sum>target
-        //continue: sum<target
-        print("DPS(IN) - current start = " + start);
-        if(start>=nums.length){
-            return 0;
-        }
-        int res = 0;
-        for(int ii = start; ii<nums.length;ii++){
-            print(" - iteration - " + ii + ", cur num: " + nums[ii] + ", target:" + S);
-            if(nums[ii]==S){
-                print("res ++ ");
-                res ++;
+    private int dps(int[] nums, int S){
+        log("dps on " + S);
+        int[] dp = new int[S+1];
+        dp[0] = 1; //there is always 1 way to sum 0 to 0
+        for(int n : nums){
+            log(""+n);
+            for(int ii = S; ii>=n; ii--){
+                //1. not go out of index
+                //2. set the possible outcome ranges,  below n, larger positive integer can never be sum to smaller value; larger than S, cannot reach.
+                dp[ii] += dp[ii-n];
+                print(dp);
             }
-            if (nums[ii]<=S){
-                res += dps(nums, S-nums[ii], ii+1);
-            } // >S, end
+            print(dp);
         }
-        print("DPS(OUT) - current start = " + start + ", res = " + res);
-        return res;
+        return dp[S];
     }
 
     /**
@@ -91,6 +84,7 @@ public class TargetSumI494 implements Tracker{
         TargetSumI494 t = new TargetSumI494();
         int [] input = {1,1,1,1,1};
 //        int [] input = {1,0};
-        t.print(""+t.findTargetSumWays2(input, 3));
+        int res = t.findTargetSumWays2(input, 3);
+        t.print(""+res);
     }
 }
