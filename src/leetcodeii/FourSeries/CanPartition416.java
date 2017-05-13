@@ -25,7 +25,7 @@ public class CanPartition416 implements Tracker{
             for(int ii=sum/2; ii>=n; ii--){
                 dp[ii] = dp[ii-n];
             }
-            print(dp);
+            log(dp);
             if(dp[sum/2]>0){
                 return true;
             }

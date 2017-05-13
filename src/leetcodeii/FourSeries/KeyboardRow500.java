@@ -3,7 +3,6 @@ package leetcodeii.FourSeries;
 import leetcodeii.Tracker;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,7 +37,7 @@ public class KeyboardRow500 implements Tracker{
         secondRow.add('K');
         secondRow.add('L');
         String [] res = Arrays.stream(words).filter(s -> sameRow(s, firstRow, secondRow)==true).toArray(str -> new String[str]);
-        print(res);
+        log(res);
         return res;
     }
 

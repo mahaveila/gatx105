@@ -69,9 +69,9 @@ public class TargetSumI494 implements Tracker{
                 //1. not go out of index
                 //2. set the possible outcome ranges,  below n, larger positive integer can never be sum to smaller value; larger than S, cannot reach.
                 dp[ii] += dp[ii-n];
-                print(dp);
+                log(dp);
             }
-            print(dp);
+            log(dp);
         }
         return dp[S];
     }
@@ -85,6 +85,6 @@ public class TargetSumI494 implements Tracker{
         int [] input = {1,1,1,1,1};
 //        int [] input = {1,0};
         int res = t.findTargetSumWays2(input, 3);
-        t.print(""+res);
+        t.cout(""+res);
     }
 }
