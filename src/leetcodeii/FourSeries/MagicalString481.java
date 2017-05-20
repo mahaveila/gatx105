@@ -1,35 +1,57 @@
 package leetcodeii.FourSeries;
 
+import leetcodeii.Tracker;
+
+import javax.sound.midi.Track;
+import java.util.Arrays;
 import java.util.function.Function;
 
-/**
+/** TODO: submit
  * Created by Youming on 4/19/2017.
  */
-public class MagicalString481 {
+public class MagicalString481 implements Tracker{
 
     int oneInMagicString(int n){
-        String magic = generateMgiString(n);
-        int sum = 0;
-        for (char c:magic.toCharArray()){
-            sum += c-32; //1-2 = -1, 2-2=0;
+
+        int [] magicArray = new int[n];
+        magicArray[0]=1;
+        magicArray[1]=2;
+//        int value = 1; carries by magic[tail-1]
+
+
+        cout(magicArray);
+        //starting at 1, preset at 0
+        for(int cur = 1, tail = 1; tail < n; cur ++){
+            int value = flipNumber(magicArray[tail -1]);
+            cout(String.format("current at %d, tail at %d, next tail at %d, current value is %d", cur, tail, tail+magicArray[cur], value));
+            fillIn(magicArray[cur], value, tail, magicArray);
+            cout(magicArray);
+            tail += magicArray[cur];
         }
-        return sum * -1;
+        return (int) Arrays.stream(magicArray).filter(i -> i==1).count();
     }
 
-    String generateMgiString(int n){
-        StringBuilder sb = new StringBuilder();
-        int idx = 0;
-        sb.append(1);
-        Function<Integer, Integer> next = i->i==1?2:1;
-        while(sb.length()<n){
-            int cur = sb.charAt(idx++);
-            sb.append(computeNextSequence(cur, next.apply(cur)));
+    private void fillIn(int seq, int value, int tail, int [] input){
+
+        for(int start = tail; start < tail + seq; start ++){
+            if(start>=input.length){
+                break;
+            }
+            cout(String.format("filling %d with %d", start, value));
+            input[start] = value;
         }
-        return sb.toString();
     }
 
-    private int computeNextSequence(int cur, Integer next) {
-        return cur == 1 ? next : next *10 + next;
+    private int flipNumber(int n){
+        //flip between 10 and 01, use XOR
+        return n^3;
+    }
+
+    public static void main(String [] args){
+
+        MagicalString481 m = new MagicalString481();
+//        m.cout(m.oneInMagicString(6));
+        m.cout(m.oneInMagicString(12));
     }
 
 }

@@ -1,6 +1,6 @@
 package leetcodeii.FourSeries;
 
-/** TODO: test
+/** TODO: UPDATE
  * Created by Youming on 4/19/2017.
  */
 public class LicenseKeyFomatting482 {

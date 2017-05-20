@@ -48,6 +48,20 @@ public interface Tracker<T> {
         System.out.println(sb.toString());
     }
 
+    default void cout(double[] ints) {
+        final StringBuilder sb = new StringBuilder();
+        Arrays.stream(ints).forEach(s -> sb.append(sb.length() == 0 ? "[" : ",").append("" + s));
+        sb.append("]");
+        System.out.println(sb.toString());
+    }
+
+    default void cout(T [] ints) {
+        final StringBuilder sb = new StringBuilder();
+        Arrays.stream(ints).forEach(s -> sb.append(sb.length() == 0 ? "[" : ",").append(s.toString()));
+        sb.append("]");
+        System.out.println(sb.toString());
+    }
+
     default void cout(List<T> objs){
         System.out.println(stringfy(objs));
     }
@@ -63,6 +77,14 @@ public interface Tracker<T> {
     default String stringfyString(List<String> strs){
         StringBuilder sb = new StringBuilder();
         strs.forEach(o -> {
+            sb.append(sb.length()>0?",":"[").append(stringfy((T) o));
+        });
+        return sb.append("]").toString();
+    }
+
+    default String stringfy(T [] objs){
+        StringBuilder sb = new StringBuilder();
+        Arrays.stream(objs).forEach(o -> {
             sb.append(sb.length()>0?",":"[").append(stringfy((T) o));
         });
         return sb.append("]").toString();
