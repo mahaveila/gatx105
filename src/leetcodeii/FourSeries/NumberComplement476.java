@@ -7,7 +7,7 @@ import leetcodeii.Tracker;
  */
 public class NumberComplement476 implements Tracker{
 
-    //TODO: SUBMIT and compare
+
     public int findComplement(int n){
         //TODO: find a way to represents the 11111 seq for all integers
 

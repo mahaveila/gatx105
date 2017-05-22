@@ -2,7 +2,7 @@ package leetcodeii.FourSeries;
 
 import leetcodeii.Tracker;
 
-/** TODO: SUBMIT
+/** TODO: Time limited exceeded
  * Created by Youming on 4/19/2017.
  */
 public class TotalHammingDistance477 implements Tracker{
@@ -49,7 +49,32 @@ public class TotalHammingDistance477 implements Tracker{
     public static void main (String [] args){
         TotalHammingDistance477 t = new TotalHammingDistance477();
         int[] in = {4,14,2};
+        t.cout(t.totalHammingDistance(in));
         t.cout(t.totalHammingDist(in));
+        t.cout("TEST");
 
+        t.cout(""+ (1<<1));
+    }
+
+    public int totalHammingDistance(int [] nums){
+
+        int total = 0, n = nums.length;
+
+        for(int ii = 0; ii<32; ii++){
+            //iterating each bit
+            int count = 0;
+            for(int jj=0; jj<n; jj++){
+                //counting how many number have current ii_th bit set
+//                int mask = 1<<ii;
+//                cout(String.format("current mask for << %d is %d", ii, mask));
+//                count += nums[jj]&mask;
+                //[MISS], use num >>, instead 1 <<, because 1 << 31 = -2147483648
+//                Integer.MIN_VALUE = 0X80000000;
+                count += nums[jj]>>ii & 1;
+            }
+            //ii th bit, count # has 1, rest of them has 0, the total distance is count*rest
+            total += count * (n-count);
+        }
+        return total;
     }
 }

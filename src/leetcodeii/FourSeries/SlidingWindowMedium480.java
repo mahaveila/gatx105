@@ -24,6 +24,7 @@ public class SlidingWindowMedium480 implements Tracker<Integer>{
         }
         cout("preset finished " + stringfy(ls));
         for(int jj=k; jj< input.length; jj++){
+            cout(String.format("looping %d", jj));
             res[jj-k] = getMedium(ls);
             ls.remove(indexOf(input[jj-k], ls));
             insert(input[jj], ls);
@@ -62,13 +63,24 @@ public class SlidingWindowMedium480 implements Tracker<Integer>{
     }
 
     private double getMedium(List<Integer> ls){
-        return ls.size()%2==0? ((double) ls.get(ls.size()/2)) + ((double )ls.get(ls.size()/2 -1)) : (double) ls.get(ls.size()/2);
+//        cout("getting medium .. ");
+//        if(ls.size()%2==0){
+//            cout("even");
+//            cout(String.format("first [%d]=%d, second [%d]=%d", ls.size()/2, ls.get(ls.size()/2), ls.size()/2-1, ls.get(ls.size()/2-1)));
+//        } else {
+//            cout("odd");
+//        }
+
+        return ls.size()%2==0? (((double) ls.get(ls.size()/2)) + ((double )ls.get(ls.size()/2 -1)))/2 : (double) ls.get(ls.size()/2);
     }
 
     public static void main (String [] args){
-        int[] input = {1,3,-1,-3,5,3,6,7};
+//        int[] input = {1,3,-1,-3,5,3,6,7};
+        int[] input = {1,4,2,3};
+
         SlidingWindowMedium480 s = new SlidingWindowMedium480();
-        s.cout(s.slidingWindowMedium(input, 3));
+//        s.cout(s.slidingWindowMedium(input, 3));
+        s.cout(s.slidingWindowMedium(input, 4));
     }
 
     /**

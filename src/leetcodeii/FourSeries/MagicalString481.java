@@ -6,13 +6,18 @@ import javax.sound.midi.Track;
 import java.util.Arrays;
 import java.util.function.Function;
 
-/** TODO: submit
+/** TODO: analyze
  * Created by Youming on 4/19/2017.
  */
 public class MagicalString481 implements Tracker{
 
     int oneInMagicString(int n){
-
+        if(n<1){
+            return 0;
+        }
+        if(n<=2){
+            return 1;
+        }
         int [] magicArray = new int[n];
         magicArray[0]=1;
         magicArray[1]=2;
