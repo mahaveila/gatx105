@@ -47,16 +47,21 @@ public class OnesAndZeros474 implements Tracker{
         String [] input1 = {"10", "0001", "111001", "1", "0"};
         String [] input2 = {"10", "0", "1"};
         OnesAndZeros474 o = new OnesAndZeros474();
-        o.cout(o.findMaxForm(input1, 5, 3));
-        o.cout(o.findMaxForm(input2, 1, 1));
+        o.cout(o.findMaxFormDP(input1, 5, 3));
+        o.cout(o.findMaxFormDP(input2, 1, 1));
     }
 
     public int findMaxFormDP(String[] strs, int m, int n) {
-        int [][] res = new int[m+1][n+1];
+        int [][] dp = new int[m+1][n+1];
         for(String s : strs){
-
+            int[] cur = count(s);
+            for(int ii = m; ii >= cur[0]; ii--){
+                for(int jj = n; jj >= cur[1]; jj--){
+                    dp[ii][jj] = Math.max(1 + dp[ii-cur[0]][jj-cur[1]], dp[ii][jj]);
+                }
+            }
         }
-        return res[m][n];
+        return dp[m][n];
     }
 
     public int[] count(String str){
