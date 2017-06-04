@@ -7,7 +7,7 @@ import leetcodeii.Tracker;
  */
 public class OnesAndZeros474 implements Tracker{
 
-    /** TODO: SUBMIT
+    /** TODO: TIMEOUT
      *
      * @param strs
      * @param m number of 0s
@@ -51,4 +51,19 @@ public class OnesAndZeros474 implements Tracker{
         o.cout(o.findMaxForm(input2, 1, 1));
     }
 
+    public int findMaxFormDP(String[] strs, int m, int n) {
+        int [][] res = new int[m+1][n+1];
+        for(String s : strs){
+
+        }
+        return res[m][n];
+    }
+
+    public int[] count(String str){
+        int [] res = new int[2];
+        for(int ii = 0 ; ii<str.length(); ii++){
+            res[str.charAt(ii)-'0']++;
+        }
+        return res;
+    }
 }
