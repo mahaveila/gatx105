@@ -11,7 +11,7 @@ import java.util.List;
  *
  * to maintain a addable, removable and sorted data structure. Also need accessible middle at O(1)
  */
-public class SlidingWindowMedium480 implements Tracker<Integer>{
+public class SlidingWindowMedium480 implements Tracker<String, Integer>{
 
     double[] slidingWindowMedium(int[] input, int k) {
         int size = input.length - k + 1; //len - k = extra ele, + itself as a beginning window

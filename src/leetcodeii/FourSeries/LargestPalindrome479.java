@@ -5,7 +5,7 @@ import leetcodeii.Tracker;
 /**
  * Created by Erebus on 8/5/17.
  */
-public class LargestPalindrome479 implements Tracker<String>{
+public class LargestPalindrome479 implements Tracker<Integer, LFUCache.Cache>{
 
     public int largestPalindrome(int n) {
         if(n==1){

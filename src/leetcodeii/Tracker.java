@@ -7,6 +7,8 @@ package leetcodeii;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -14,7 +16,7 @@ import java.util.stream.Collectors;
 /**
  * @author Erebus
  */
-public interface Tracker<T> {
+public interface Tracker<K, T> {
 
     Logger LOG = Logger.getLogger("Tracker");
 
@@ -65,6 +67,8 @@ public interface Tracker<T> {
     default void cout(List<T> objs){
         System.out.println(stringfy(objs));
     }
+    default void cout(Set<T> objs) {System.out.println(stringfy(objs.stream().collect(Collectors.toList())));}
+    default void cout(Map<K, T> objs) {System.out.println(objs.values().stream().map(c->c.toString()).collect(Collectors.toList()));}
 
     default String stringfy(List<T> objs){
         StringBuilder sb = new StringBuilder();
