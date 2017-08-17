@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 /** TODO: test
  * Created by Youming on 4/19/2017.
  */
-public class IncreasingSubSequence491 implements Tracker<Integer>{
+public class IncreasingSubSequence491 implements Tracker<Integer, Integer>{
 
     /**
      * no pro: FIXME, the pro in one time input iteration is at cost of temp table iterations

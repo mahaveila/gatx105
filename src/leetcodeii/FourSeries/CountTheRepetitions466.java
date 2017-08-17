@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 /**
  * Created by Erebus on 8/5/17.
  */
-public class CountTheRepetitions466 implements Tracker<String>{
+public class CountTheRepetitions466 implements Tracker<String, String>{
 
     public static void main (String [] args){
         CountTheRepetitions466 c = new CountTheRepetitions466();
