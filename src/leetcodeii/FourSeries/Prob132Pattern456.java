@@ -7,7 +7,7 @@ import java.util.Arrays;
 /**
  * Created by Erebus on 8/13/17.
  */
-public class Prob132Pattern456 implements Tracker<Integer>{
+public class Prob132Pattern456 implements Tracker<Integer, Integer>{
 
     public boolean find132pattern(int[] nums) {
         if(nums==null || nums.length<3){
