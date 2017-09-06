@@ -5,10 +5,7 @@
  */
 package leetcodeii;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -60,6 +57,20 @@ public interface Tracker<K, T> {
     default void cout(T [] ints) {
         final StringBuilder sb = new StringBuilder();
         Arrays.stream(ints).forEach(s -> sb.append(sb.length() == 0 ? "[" : ",").append(s.toString()));
+        sb.append("]");
+        System.out.println(sb.toString());
+    }
+
+    default void coutInBinary(int [] ints){
+        final StringBuilder sb = new StringBuilder();
+        Arrays.stream(ints).forEach(s -> sb.append(sb.length() == 0 ? "[" : ",").append(Integer.toBinaryString(s)));
+        sb.append("]");
+        System.out.println(sb.toString());
+    }
+
+    default void coutIntBinary(Collection collection){
+        final StringBuilder sb = new StringBuilder();
+        collection.stream().forEach(s -> sb.append(sb.length() == 0 ? "[" : ",").append(Integer.toBinaryString(((Integer)s).intValue())));
         sb.append("]");
         System.out.println(sb.toString());
     }
