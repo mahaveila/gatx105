@@ -13,6 +13,7 @@ import java.util.List;
  * @author Erebus
  */
 public class DiagonalTrav498 {
+
     private int[] diagTravFunc(int[][] M){
         int m = M.length;
         int n = M[0].length;

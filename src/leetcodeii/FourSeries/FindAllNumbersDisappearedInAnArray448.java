@@ -10,7 +10,7 @@ public class FindAllNumbersDisappearedInAnArray448 {
     public List<Integer> findDisappearedNumbers(int[] nums) {
         for(int ii = 0; ii<nums.length; ii++){
             //check for seen negative index, make them positive
-            int val = Math.abs(nums[ii])-1;
+            int val = Math.abs(nums[ii])-1; //previously set negative
             //check for unseeing, only mark those
             if(nums[val]>0){
                 nums[val]=-nums[val];

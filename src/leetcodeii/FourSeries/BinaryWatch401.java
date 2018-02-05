@@ -23,7 +23,7 @@ public class BinaryWatch401 implements Tracker{
 
     public static void main(String[] args){
         BinaryWatch401 b = new BinaryWatch401();
-        b.cout(b.readBinaryWatch(4));
+        b.cout(b.readBinaryWatch(1));
     }
 
     public List<String> readBinaryWatch(int num) {

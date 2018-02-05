@@ -1,11 +1,13 @@
 package leetcodeii.FourSeries;
 
+import leetcodeii.Tracker;
+
 import java.util.*;
 
 /**
  * Created by Erebus on 9/12/17.
  */
-public class FrogJump403 {
+public class FrogJump403 implements Tracker{
 
 
     /**
@@ -27,8 +29,11 @@ public class FrogJump403 {
         }
         for(int ii = 0; ii<units.length; ii++){
             int stone = units[ii];
+            cout(String.format("current stone = [%d]:%d", ii, stone));
             for(int step:map.get(stone)){
+                //FIXME: where does this guy come from?
                 int reach = stone + step;
+                cout(" stone " +stone+" at ("+ii+") has step " + step + ", can reach " + reach);
                 if(reach == units[units.length-1]){
                     return true;
                 }
@@ -41,12 +46,19 @@ public class FrogJump403 {
                         set.add(step-1);
                     }
                     set.add(step+1);
+                    cout(String.format("  adding step to dest %d, [%d, %d, %d]", reach, step-1, step, step+1));
                 }
             }
         }
         return false;
     }
 
+    public static void main(String [] args){
+        FrogJump403 f = new FrogJump403();
+        int[] input ={0,1,3,5,6,8,12,17};
+        f.cout(input);
+        f.cout("can cross = " + f.canCross(input));
+    }
     //TODO TLE, to improve, use hash map to store what steps can be taken to the stone i -> {prev0, prev1, ... }
     //This process is populated by
     //On each step, we look if any other stone can be reached from it, if so, we update that stone's steps by adding step, step + 1, step - 1

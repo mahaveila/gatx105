@@ -9,6 +9,7 @@ import java.util.Map;
 public class ArithmeticSlicesII446 {
 
     public int numberOfArithmeticSlices(int[] A) {
+
         /**
          * [2,4,6,8,10]
          * i=0, n = 2, no number before 2, skip
@@ -21,7 +22,6 @@ public class ArithmeticSlicesII446 {
          *                           map[2].put(d=4, 1)
          *      found >=3 number, for key=2, map exist for key(2)@j=1, means must be >= 2 numbers with same d before, put d->2 (i=2)
          *      found 2 number for key=4 for the first time, put d=4->1, at (i=2)
-         *
          *
          * i=3, n = 8,
          *      [j]=[0]=2, d=6, put 6->1 in map[3]
@@ -44,6 +44,7 @@ public class ArithmeticSlicesII446 {
          * d=2: 2,4,6; 4,6,8; 6,8,10;2,4,6,8;4,6,8,10;2,4,6,8,10
          * d=4: 2,6,10
          */
+
         int res = 0;
         Map<Integer, Integer>[] maps = new Map[A.length];
         for(int ii=0;ii<maps.length;ii++){
