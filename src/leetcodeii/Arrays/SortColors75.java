@@ -1,4 +1,4 @@
-package leetcodeii.ZeroSeires;
+package leetcodeii.Arrays;
 
 /**
  * Created by Youming on 2/9/2018.

@@ -1,4 +1,4 @@
-package leetcodeii.ZeroSeires;
+package leetcodeii.Arrays;
 
 /**
  * Created by Erebus on 2/6/18.

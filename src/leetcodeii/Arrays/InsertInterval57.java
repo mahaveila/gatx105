@@ -1,4 +1,4 @@
-package leetcodeii.ZeroSeires;
+package leetcodeii.Arrays;
 
 import leetcodeii.Interval;
 
