@@ -78,5 +78,5 @@ public class BinaryTreeCodecSerializeAndDeserialize297 {
 
         return res;
     }
-    
+
 }
