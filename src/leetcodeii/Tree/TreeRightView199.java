@@ -33,7 +33,7 @@ public class TreeRightView199 {
         rightView(root.right, res, depth+1);
         rightView(root.left, res, depth+1);
     }
-    
+
 
     public List<Integer> rightSideViewTooComplicated(TreeNode root) {
         List<Integer> res = new ArrayList<>();
