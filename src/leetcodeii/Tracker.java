@@ -40,9 +40,26 @@ public interface Tracker<K, T> {
         System.out.println("" + i);
     }
 
+    default void cout(double i) {
+        System.out.println("" + i);
+    }
+
+    default void cout(char i) {
+        System.out.println("" + i);
+    }
+
     default void cout(int[] ints) {
         final StringBuilder sb = new StringBuilder();
         Arrays.stream(ints).forEach(s -> sb.append(sb.length() == 0 ? "[" : ",").append("" + s));
+        sb.append("]");
+        System.out.println(sb.toString());
+    }
+
+    default void cout(char[] cs) {
+        final StringBuilder sb = new StringBuilder();
+        for(char s : cs){
+            sb.append(sb.length() == 0 ? "[" : ",").append("" + s);
+        }
         sb.append("]");
         System.out.println(sb.toString());
     }

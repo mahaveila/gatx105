@@ -61,6 +61,9 @@ public class TrapRainWater407 implements Tracker{
                     sum += Math.max(0, cur.height - grid[row][column]);
                     //populate higher edge to visited node.
                     //!! instead of update the grid itself. --> could vary by different cases.
+                    //FIXME: fixed, key here! offer new bar with a edge = max(cur edge, its own edge)
+                    //because edge always go in increasing order,
+                    //FIXME: like the 1-dimensional problem, always from both end, increasing effective edges.
                     q.offer(new Cell(row, column, Math.max(grid[row][column], cur.height)));
                 }
             }
