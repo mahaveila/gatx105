@@ -40,6 +40,8 @@ public interface Tracker<K, T> {
         System.out.println("" + i);
     }
 
+    default void cout(boolean b){System.out.println(b?"true":"false");}
+
     default void cout(double i) {
         System.out.println("" + i);
     }
@@ -64,9 +66,25 @@ public interface Tracker<K, T> {
         System.out.println(sb.toString());
     }
 
+    default void cout(boolean[] bs) {
+        final StringBuilder sb = new StringBuilder();
+        for(boolean b : bs){
+            sb.append(sb.length() == 0 ? "[" : ",").append("" + (b?"true":"false"));
+        }
+        sb.append("]");
+        System.out.println(sb.toString());
+    }
+
     default void cout(int[][] ints) {
         final StringBuilder sb = new StringBuilder();
         Arrays.stream(ints).forEach(s -> sb.append(sb.length() == 0 ? "[" : ",").append("\n " + stringfy(s)));
+        sb.append("\n]");
+        System.out.println(sb.toString());
+    }
+
+    default void cout(boolean[][] bs) {
+        final StringBuilder sb = new StringBuilder();
+        Arrays.stream(bs).forEach(s -> sb.append(sb.length() == 0 ? "[" : ",").append("\n " + stringfy(s)));
         sb.append("\n]");
         System.out.println(sb.toString());
     }
@@ -137,9 +155,19 @@ public interface Tracker<K, T> {
         return sb.append("]").toString();
     }
 
+    default String stringfy(boolean [] bs){
+        StringBuilder sb = new StringBuilder();
+        for(boolean b : bs){
+            sb.append(sb.length()>0?",":"[").append(stringfy(b));
+        }
+        return sb.append("]").toString();
+    }
+
     default String stringfy(T o){
         return o==null?"":o.toString();
     }
+
+    default String stringfy(boolean b) {return b?"true":"false";}
 
     default void coutlistlist(List<List<T>> output){
         List<String> ls = ((List<String>) output.stream().map(l->"    " + stringfy(l)+"\n").collect(Collectors.toList()));
