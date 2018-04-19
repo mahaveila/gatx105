@@ -10,57 +10,113 @@ import java.util.PriorityQueue;
  */
 class LRUCache implements Tracker{
 
-//    public static class Data{
-//        int c;
-//        int key;
-//        int val;
-//        public Data(int key, int val){
-//            this.key = key;
-//            this.val = val;
-//            this.c = 0;
-//        }
-//    }
-//
-//    PriorityQueue<Data> rank;
-//    Map<Integer, Data> map;
-//    int size;
+    int capacity;
+    Map<Integer, Node> map;
+    Node prehead;
+    Node tail;
+
+    public static class Node{
+        Node pre;
+        Node next;
+        int val;
+        int key;
+        public Node(int key, int val){
+            this.val = val;
+            this.key = key;
+        }
+    }
 
     public LRUCache(int capacity) {
-        //using count to order
-//        rank = new PriorityQueue<Data>(1, (data1,data2)->data1.c-data2.c);
-//        map = new HashMap<>();
-//        size = capacity;
+        this.capacity = capacity;
+        prehead = new Node(-1, -1); // the previous node of head
+        map = new HashMap<>();
     }
 
     public int get(int key) {
-//        if(map.containsKey(key)){
-//            Data d = map.get(key);
-//            //FIXME: data polled from map won't affect the heap
-//            d.c = d.c+1;
-//            return d.val;
-//        }
+        if(map.containsKey(key)){
+            int res = map.get(key).val;
+            moveToFront(key);
+            return res;
+        }
         return -1;
     }
 
+    public void moveToFront(int key){
+        Node n = map.get(key);
+
+        //cut it off
+        Node pre = n.pre;
+        Node next = n.next;
+        pre.next = next;
+        if(next!=null){
+            next.pre = pre;
+        }
+        if(tail==n && pre!=prehead){
+            //cutted the last node off, need to update tail
+            //unless tail is the only node.
+            tail = n.pre;
+        }
+
+        //insert into front; recent used
+        if(prehead.next!=null){
+            prehead.next.pre = n;
+        }
+        n.next = prehead.next;
+        prehead.next = n;
+        n.pre = prehead;
+    }
+
     public void put(int key, int value) {
-//        if(rank.size()>=size){
-//            Data least = rank.poll();
-//            map.remove(least.key);
-//        }
-//        Data d = new Data(key, value);
-//        rank.offer(d);
-//        map.put(key, d);
+        cout("add " + key + " -> " + value + ", to capacity: " + capacity);
+        if(map.containsKey(key)){
+            //need to update the node's value
+            map.get(key).val = value;
+            moveToFront(key);
+
+        } else {
+            if(capacity==0){
+                cout("not enough memory");
+                int lastKey = tail.key;
+                cout("removing " + lastKey);
+                map.remove(lastKey);
+                if(tail.pre == prehead){
+                    //capacity = 1;
+                    tail = null;
+                    prehead.next = null;
+                } else {
+                    tail.pre.next = null;
+                    tail = tail.pre;
+                }
+                capacity ++;
+            }
+
+            //inset a new node
+            Node n = new Node(key, value);
+            map.put(key, n);
+            if(tail==null){
+                tail = n;
+            }
+            n.next = prehead.next;
+            if(prehead.next!=null){
+                prehead.next.pre = n;
+            }
+            prehead.next = n;
+            n.pre = prehead;
+            capacity --;
+        }
     }
 
     public static void main(String [] args){
-//        LRUCache cache = new LRUCache(2);
-//
-//        cache.put(1,1);
-//        cache.put(2,2);
-//        cache.cout("current cache size: " + cache.map.keySet().size() + " | " + cache.rank.size());
-//        cache.cout(cache.get(1));
-//        cache.put(3,3);
-//        cache.cout("current cache size: " + cache.map.keySet().size() + " | " + cache.rank.size());
+        LRUCache cache = new LRUCache(1);
+
+        cache.put(2,1);
+        cache.cout(cache.get(2));
+//        cache.cout("current cache size: " + cache.map.keySet().size());
+
+        cache.put(3,1);
+//        cache.cout("current cache size: " + cache.map.keySet().size());
 //        cache.cout(cache.map.keySet());
+        cache.cout(cache.get(2));
+        cache.cout(cache.get(3));
     }
 }
